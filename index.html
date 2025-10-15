@@ -1,365 +1,158 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI Resume Generator — App UI</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
+:root{
+  --bg:#0b0c10;
+  --surface:#0f141b;
+  --panel:#191f27;
+  --text:#eaf0ff;
+  --muted:#a6adbb;
 
-  <!-- =========================================================
-       NAVBAR (shared across pages)
-       Items: Generate Resume • My Resumes • Templates • Profile
-       ========================================================= -->
-  <header class="nav">
-    <div class="container nav__wrap">
-      <div class="brand">
-        <div class="brand__mark"></div>
-        <span class="brand__name">AI Resume Generator</span>
-      </div>
+  --glowA:#7c6cff;  /* violet */
+  --glowB:#00d1ff;  /* cyan   */
+  --glowC:#ff7ab6;  /* pink   */
 
-      <nav class="nav__links">
-        <a class="nav__link" href="#home">Generate Resume</a>
-        <a class="nav__link" href="#resumes">My Resumes</a>
-        <a class="nav__link" href="#templates">Templates</a>
-        <a class="nav__link" href="#profile">Profile</a>
-      </nav>
+  --line: rgba(255,255,255,.09);
+  --line-strong: rgba(255,255,255,.12);
+}
 
-      <div class="nav__user">
-        <span class="nav__userName">Shaswot</span>
-        <div class="avatar" aria-hidden="true"></div>
-      </div>
-    </div>
-  </header>
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  color:var(--text);
+  background:linear-gradient(180deg,#0b0c10 0%, #0b0c10 55%, #0f141b 100%);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, Noto Sans, sans-serif;
+  line-height:1.45;
+}
+a{color:inherit; text-decoration:none}
+a:hover{text-decoration:underline; text-decoration-color:rgba(255,255,255,.35)}
+.container{max-width:1160px; margin:0 auto; padding:0 20px}
 
-  <!-- =========================================================
-       HOME / GENERATE RESUME (Your Application Packages)
-       Structure: Title + 2 buttons + Templates row (label + select)
-       ========================================================= -->
-  <main id="home" class="page">
-    <div class="container">
-      <h1 class="page__title">Your Application Packages</h1>
+/* NAVBAR */
+.nav{
+  position:sticky; top:0; z-index:50;
+  background:rgba(15,20,27,.55);
+  -webkit-backdrop-filter:saturate(150%) blur(12px);
+  backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.nav__wrap{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
+.brand{display:flex; align-items:center; gap:10px; font-weight:800}
+.brand__mark{
+  width:26px; height:26px; border-radius:8px;
+  background:conic-gradient(from 210deg,var(--glowA),var(--glowB),var(--glowC),var(--glowA));
+  box-shadow:0 0 24px rgba(124,108,255,.35), 0 0 0 1px rgba(255,255,255,.08) inset;
+}
+.brand__name{letter-spacing:.2px}
+.nav__links{display:flex; gap:22px; color:#cbd5e1; font-size:14px}
+.nav__link{opacity:.95; padding:6px 0; border-bottom:2px solid transparent}
+.nav__link:hover{border-bottom-color:rgba(0,209,255,.45)}
+.nav__link--active{border-bottom-color:rgba(0,209,255,.65)}
+.nav__user{display:flex; align-items:center; gap:10px}
+.nav__userName{color:#cbd5e1; font-size:14px}
+.avatar{width:28px; height:28px; border-radius:999px; background:linear-gradient(180deg,var(--glowB),var(--glowA))}
 
-      <div class="actions">
-        <button class="btn btn--primary">Create New Package</button>
-        <button class="btn btn--ghost">Import Resume</button>
-      </div>
+/* PAGE */
+.page{padding:30px 0 24px}
+.page__title{margin:0 0 16px; font-size:24px; letter-spacing:.2px}
+.page__intro{margin:0 0 18px; color:var(--muted); font-size:14px}
 
-      <div class="panel panel--row">
-        <div class="row">
-          <div class="row__label">Templates:</div>
-          <div class="row__control">
-            <select class="select">
-              <option>Classic - Traditional professional resume layout</option>
-              <option>Professional - Clean, professional layout suitable for all industries</option>
-              <option>Modern - Clean contemporary layout with subtle design elements</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
+/* BUTTONS */
+.actions{display:flex; gap:10px; margin-bottom:14px}
+.btn{
+  appearance:none; border:0; cursor:pointer; font-weight:700;
+  padding:10px 14px; border-radius:12px; display:inline-flex; align-items:center; justify-content:center;
+}
+.btn--primary{
+  color:#0a0d12;
+  background:linear-gradient(90deg,var(--glowA),var(--glowB));
+  box-shadow:0 10px 30px rgba(124,108,255,.24), 0 0 0 1px rgba(255,255,255,.08) inset;
+}
+.btn--ghost{
+  color:var(--text);
+  background:rgba(255,255,255,.04);
+  box-shadow:inset 0 0 0 1px var(--line);
+}
+.btn--tiny{padding:8px 10px; border-radius:10px; font-size:13px}
 
-  <!-- =========================================================
-       MY RESUMES
-       Structure: Title + Templates row + Empty state (text + button)
-       ========================================================= -->
-  <section id="resumes" class="page">
-    <div class="container">
-      <h1 class="page__title">My Resumes</h1>
+/* PANELS / ROWS */
+.panel{
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+  margin-bottom:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.04);
+}
+.panel--row{padding:10px}
+.panel__head{font-weight:700}
+.panel__rule{height:1px; background:linear-gradient(90deg,transparent, var(--line-strong), transparent); margin:8px 0}
+.panel--profile{display:flex; align-items:center; gap:14px}
 
-      <div class="panel panel--row">
-        <div class="row">
-          <div class="row__label">Templates:</div>
-          <div class="row__control">
-            <select class="select">
-              <option>Classic - Traditional professional resume layout</option>
-              <option>Professional - Clean, professional layout suitable for all industries</option>
-              <option>Modern - Clean contemporary layout with subtle design elements</option>
-            </select>
-          </div>
-        </div>
-      </div>
+.row{
+  display:grid;
+  grid-template-columns: 150px 1fr;
+  gap:12px; align-items:center;
+  background:rgba(0,0,0,.05);
+  border-radius:10px; padding:12px;
+}
+.row__label{font-weight:700}
+.row__control{display:flex; align-items:center}
+.select{
+  width:100%; color:var(--text); background:#1a1f27;
+  border:1px solid var(--line); border-radius:10px;
+  padding:10px 12px; outline:none;
+}
 
-      <!-- Empty state (as in your screenshot) -->
-      <div class="empty">
-        <h3 class="empty__title">No Resumes Yet</h3>
-        <p class="empty__desc">
-          You haven’t generated any resumes yet. Go to the home page to create your first resume!
-        </p>
-        <a href="#home" class="btn btn--primary">Generate Resume</a>
-      </div>
-    </div>
-  </section>
+/* EMPTY STATE */
+.empty{margin:40px auto 10px; text-align:center; max-width:520px}
+.empty__title{margin:0 0 6px; font-size:20px}
+.empty__desc{margin:0 0 12px; color:var(--muted)}
 
-  <!-- =========================================================
-       TEMPLATES
-       Structure: Title + 3 cards (Classic/Professional/Modern)
-       Each: title, blurb, “Features:” list, 2 buttons (Preview / Use Template)
-       ========================================================= -->
-  <section id="templates" class="page">
-    <div class="container">
-      <h1 class="page__title">Resume Templates</h1>
+/* TEMPLATES GRID */
+.grid{display:grid; gap:16px}
+.grid--two{grid-template-columns: repeat(2, 1fr); gap:16px}
+@media (max-width: 960px){ .grid--two{grid-template-columns:1fr} }
 
-      <p class="page__intro">
-        Choose from our professional resume templates. All templates are optimized for both web viewing and PDF generation.
-      </p>
+.tcard{
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.04);
+}
+.tcard__head{display:flex; align-items:center; justify-content:space-between}
+.tcard__title{margin:0; font-size:16px; font-weight:800}
+.tcard__desc{margin:8px 0 10px; color:#cbd5e1; font-size:13px}
+.tcard__rule{height:2px; background:linear-gradient(90deg, var(--glowB), transparent); border-radius:2px; margin:0 0 10px}
+.tcard__subtitle{font-weight:700; font-size:13px; margin:0 0 6px}
+.tlist{margin:0 0 12px 18px; padding:0; color:var(--muted); font-size:13px}
+.tcard__foot{display:flex; gap:8px}
 
-      <div class="grid">
-        <!-- Classic -->
-        <article class="tcard">
-          <header class="tcard__head">
-            <h3 class="tcard__title">Classic</h3>
-          </header>
-          <p class="tcard__desc">Traditional professional resume layout</p>
+/* PROFILE */
+.profile__name{font-weight:800; font-size:18px}
+.profile__handle{color:#cbd5e1; font-size:14px}
+.avatar--lg{width:64px; height:64px}
 
-          <div class="tcard__rule"></div>
-          <div class="tcard__subtitle">Features:</div>
-          <ul class="tlist">
-            <li>Traditional Times New Roman font</li>
-            <li>Conservative black and white design</li>
-            <li>Perfect for traditional industries</li>
-          </ul>
+.kv{display:grid; grid-template-columns: 180px 1fr; gap:8px; padding:6px 0}
+.kv__label{color:#cbd5e1}
 
-          <footer class="tcard__foot">
-            <button class="btn btn--ghost btn--tiny">Preview</button>
-            <button class="btn btn--primary btn--tiny">Use Template</button>
-          </footer>
-        </article>
+/* EDIT PROFILE FORM */
+.form{display:block}
+.field{display:flex; flex-direction:column; gap:6px}
+.field--full{grid-column:1/-1}
+.label{font-size:13px; color:#cbd5e1}
+.input, .textarea{
+  width:100%; color:var(--text); background:#1a1f27;
+  border:1px solid var(--line); border-radius:10px;
+  padding:10px 12px; outline:none;
+}
+.textarea{min-height:110px; resize:vertical}
+.hint{color:#93a3b8; font-size:12px; margin-top:4px}
+.grid--2col{display:grid; grid-template-columns: repeat(2,1fr); gap:12px}
+.grid--3col{display:grid; grid-template-columns: repeat(3,1fr); gap:12px}
+@media (max-width: 960px){ .grid--2col, .grid--3col{grid-template-columns:1fr} }
+.check{display:flex; gap:8px; align-items:center; margin:6px 0}
+.form__actions{display:flex; gap:10px; justify-content:flex-end; padding:10px 0}
 
-        <!-- Professional -->
-        <article class="tcard">
-          <header class="tcard__head">
-            <h3 class="tcard__title">Professional</h3>
-          </header>
-          <p class="tcard__desc">Clean, professional layout suitable for all industries</p>
-
-          <div class="tcard__rule"></div>
-          <div class="tcard__subtitle">Features:</div>
-          <ul class="tlist">
-            <li>Two-column layout with sidebar</li>
-            <li>Clean Calibri font</li>
-            <li>Professional gray color scheme</li>
-          </ul>
-
-          <footer class="tcard__foot">
-            <button class="btn btn--ghost btn--tiny">Preview</button>
-            <button class="btn btn--primary btn--tiny">Use Template</button>
-          </footer>
-        </article>
-
-        <!-- Modern -->
-        <article class="tcard">
-          <header class="tcard__head">
-            <h3 class="tcard__title">Modern</h3>
-          </header>
-          <p class="tcard__desc">Clean contemporary layout with subtle design elements</p>
-
-          <div class="tcard__rule"></div>
-          <div class="tcard__subtitle">Features:</div>
-          <ul class="tlist">
-            <li>Single-column sophisticated layout</li>
-            <li>Georgia serif font</li>
-            <li>Elegant and executive-friendly</li>
-          </ul>
-
-          <footer class="tcard__foot">
-            <button class="btn btn--ghost btn--tiny">Preview</button>
-            <button class="btn btn--primary btn--tiny">Use Template</button>
-          </footer>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       PROFILE
-       Structure: Title • Main profile card (avatar, name, handle) + “Edit Profile” button
-                 • Contact Information panel
-                 • Social Links panel
-                 • Account Information panel
-       ========================================================= -->
-  <section id="profile" class="page">
-    <div class="container">
-      <h1 class="page__title">User Profile</h1>
-
-      <!-- top bar with Edit Profile button aligned right like your UI -->
-      <div class="page__bar">
-        <a href="#edit-profile" class="btn btn--primary btn--tiny">Edit Profile</a>
-      </div>
-
-      <!-- Main profile card -->
-      <div class="panel panel--profile">
-        <div class="profile__left">
-          <div class="avatar avatar--lg" aria-hidden="true"></div>
-          <div>
-            <div class="profile__name">Shaswot Dhakal</div>
-            <div class="profile__handle">@hailcat</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Two side-by-side panels -->
-      <div class="grid grid--two">
-        <div class="panel">
-          <div class="panel__head">Contact Information</div>
-          <div class="panel__rule"></div>
-          <div class="kv">
-            <div class="kv__label">Email:</div>
-            <div class="kv__value">shaswotdhakal@gmail.com</div>
-          </div>
-        </div>
-
-        <div class="panel">
-          <div class="panel__head">Social Links</div>
-          <div class="panel__rule"></div>
-          <div class="kv">
-            <div class="kv__label">—</div>
-            <div class="kv__value">Add your links in Edit Profile</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Account info -->
-      <div class="panel">
-        <div class="panel__head">Account Information</div>
-        <div class="panel__rule"></div>
-        <div class="kv">
-          <div class="kv__label">Member since:</div>
-          <div class="kv__value">10/14/2025</div>
-        </div>
-        <div class="kv">
-          <div class="kv__label">Last updated:</div>
-          <div class="kv__value">10/15/2025</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       EDIT PROFILE (form)
-       Sections: Basic, Professional, Contact & Social, Preferences
-       Buttons: Save Changes, Cancel
-       ========================================================= -->
-  <section id="edit-profile" class="page">
-    <div class="container">
-      <h1 class="page__title">User Profile</h1>
-
-      <!-- Basic Information -->
-      <form class="form">
-        <div class="panel panel--form">
-          <div class="panel__head">Basic Information</div>
-          <div class="panel__rule"></div>
-
-          <div class="grid grid--2col">
-            <label class="field">
-              <span class="label">First Name *</span>
-              <input type="text" class="input" placeholder="Shaswot" />
-            </label>
-
-            <label class="field">
-              <span class="label">Last Name *</span>
-              <input type="text" class="input" placeholder="Dhakal" />
-            </label>
-
-            <label class="field">
-              <span class="label">Username</span>
-              <input type="text" class="input" placeholder="hailcat" />
-            </label>
-
-            <label class="field">
-              <span class="label">Location</span>
-              <input type="text" class="input" placeholder="e.g., San Francisco, CA" />
-            </label>
-
-            <label class="field field--full">
-              <span class="label">Bio</span>
-              <textarea class="textarea" placeholder="Tell us about yourself…"></textarea>
-            </label>
-          </div>
-        </div>
-
-        <!-- Professional Information -->
-        <div class="panel panel--form">
-          <div class="panel__head">Professional Information</div>
-          <div class="panel__rule"></div>
-
-          <div class="grid grid--2col">
-            <label class="field">
-              <span class="label">Job Title</span>
-              <input type="text" class="input" placeholder="e.g., Software Engineer" />
-            </label>
-
-            <label class="field">
-              <span class="label">Company</span>
-              <input type="text" class="input" placeholder="e.g., Tech Corp" />
-            </label>
-
-            <label class="field field--full">
-              <span class="label">Skills</span>
-              <input type="text" class="input" placeholder="e.g., JavaScript, React, Node (comma-separated)" />
-              <span class="hint">Enter skills separated by commas</span>
-            </label>
-          </div>
-        </div>
-
-        <!-- Contact & Social Links -->
-        <div class="panel panel--form">
-          <div class="panel__head">Contact & Social Links</div>
-          <div class="panel__rule"></div>
-
-          <div class="grid grid--3col">
-            <label class="field">
-              <span class="label">Website</span>
-              <input type="url" class="input" placeholder="https://yourwebsite.com" />
-            </label>
-            <label class="field">
-              <span class="label">LinkedIn</span>
-              <input type="url" class="input" placeholder="https://linkedin.com/in/username" />
-            </label>
-            <label class="field">
-              <span class="label">GitHub</span>
-              <input type="url" class="input" placeholder="https://github.com/username" />
-            </label>
-          </div>
-        </div>
-
-        <!-- Preferences -->
-        <div class="panel panel--form">
-          <div class="panel__head">Preferences</div>
-          <div class="panel__rule"></div>
-
-          <label class="check">
-            <input type="checkbox" checked />
-            <span>Receive email notifications</span>
-          </label>
-          <label class="check">
-            <input type="checkbox" />
-            <span>Receive marketing emails</span>
-          </label>
-        </div>
-
-        <!-- Form actions -->
-        <div class="form__actions">
-          <button type="submit" class="btn btn--primary">Save Changes</button>
-          <a href="#profile" class="btn btn--ghost">Cancel</a>
-        </div>
-      </form>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       FOOTER (minimal)
-       ========================================================= -->
-  <footer class="footer">
-    <div class="container footer__wrap">
-      <span>© <span id="year"></span> AI Resume Generator</span>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+/* FOOTER */
+.footer{border-top:1px solid var(--line); margin-top:10px}
+.footer__wrap{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 0; color:#cbd5e1; font-size:13px}
