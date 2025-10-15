@@ -1,158 +1,57 @@
-:root{
-  --bg:#0b0c10;
-  --surface:#0f141b;
-  --panel:#191f27;
-  --text:#eaf0ff;
-  --muted:#a6adbb;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Resume Generator — Home</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="container nav__wrap">
+      <div class="brand">
+        <div class="brand__mark"></div><span class="brand__name">AI Resume Generator</span>
+      </div>
+      <nav class="nav__links">
+        <a class="nav__link nav__link--active" href="home.html">Generate Resume</a>
+        <a class="nav__link" href="resumes.html">My Resumes</a>
+        <a class="nav__link" href="templates.html">Templates</a>
+        <a class="nav__link" href="profile.html">Profile</a>
+      </nav>
+      <div class="nav__user"><span class="nav__userName">Shaswot</span><div class="avatar"></div></div>
+    </div>
+  </header>
 
-  --glowA:#7c6cff;  /* violet */
-  --glowB:#00d1ff;  /* cyan   */
-  --glowC:#ff7ab6;  /* pink   */
+  <!-- PAGE -->
+  <main class="page">
+    <div class="container">
+      <h1 class="page__title">Your Application Packages</h1>
 
-  --line: rgba(255,255,255,.09);
-  --line-strong: rgba(255,255,255,.12);
-}
+      <div class="actions">
+        <button class="btn btn--primary">Create New Package</button>
+        <button class="btn btn--ghost">Import Resume</button>
+      </div>
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  color:var(--text);
-  background:linear-gradient(180deg,#0b0c10 0%, #0b0c10 55%, #0f141b 100%);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, Noto Sans, sans-serif;
-  line-height:1.45;
-}
-a{color:inherit; text-decoration:none}
-a:hover{text-decoration:underline; text-decoration-color:rgba(255,255,255,.35)}
-.container{max-width:1160px; margin:0 auto; padding:0 20px}
+      <div class="panel panel--row">
+        <div class="row">
+          <div class="row__label">Templates:</div>
+          <div class="row__control">
+            <select class="select">
+              <option>Classic - Traditional professional resume layout</option>
+              <option>Professional - Clean, professional layout suitable for all industries</option>
+              <option>Modern - Clean contemporary layout with subtle design elements</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
-/* NAVBAR */
-.nav{
-  position:sticky; top:0; z-index:50;
-  background:rgba(15,20,27,.55);
-  -webkit-backdrop-filter:saturate(150%) blur(12px);
-  backdrop-filter:saturate(150%) blur(12px);
-  border-bottom:1px solid var(--line);
-}
-.nav__wrap{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
-.brand{display:flex; align-items:center; gap:10px; font-weight:800}
-.brand__mark{
-  width:26px; height:26px; border-radius:8px;
-  background:conic-gradient(from 210deg,var(--glowA),var(--glowB),var(--glowC),var(--glowA));
-  box-shadow:0 0 24px rgba(124,108,255,.35), 0 0 0 1px rgba(255,255,255,.08) inset;
-}
-.brand__name{letter-spacing:.2px}
-.nav__links{display:flex; gap:22px; color:#cbd5e1; font-size:14px}
-.nav__link{opacity:.95; padding:6px 0; border-bottom:2px solid transparent}
-.nav__link:hover{border-bottom-color:rgba(0,209,255,.45)}
-.nav__link--active{border-bottom-color:rgba(0,209,255,.65)}
-.nav__user{display:flex; align-items:center; gap:10px}
-.nav__userName{color:#cbd5e1; font-size:14px}
-.avatar{width:28px; height:28px; border-radius:999px; background:linear-gradient(180deg,var(--glowB),var(--glowA))}
-
-/* PAGE */
-.page{padding:30px 0 24px}
-.page__title{margin:0 0 16px; font-size:24px; letter-spacing:.2px}
-.page__intro{margin:0 0 18px; color:var(--muted); font-size:14px}
-
-/* BUTTONS */
-.actions{display:flex; gap:10px; margin-bottom:14px}
-.btn{
-  appearance:none; border:0; cursor:pointer; font-weight:700;
-  padding:10px 14px; border-radius:12px; display:inline-flex; align-items:center; justify-content:center;
-}
-.btn--primary{
-  color:#0a0d12;
-  background:linear-gradient(90deg,var(--glowA),var(--glowB));
-  box-shadow:0 10px 30px rgba(124,108,255,.24), 0 0 0 1px rgba(255,255,255,.08) inset;
-}
-.btn--ghost{
-  color:var(--text);
-  background:rgba(255,255,255,.04);
-  box-shadow:inset 0 0 0 1px var(--line);
-}
-.btn--tiny{padding:8px 10px; border-radius:10px; font-size:13px}
-
-/* PANELS / ROWS */
-.panel{
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--line);
-  border-radius:14px;
-  padding:14px;
-  margin-bottom:14px;
-  box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.04);
-}
-.panel--row{padding:10px}
-.panel__head{font-weight:700}
-.panel__rule{height:1px; background:linear-gradient(90deg,transparent, var(--line-strong), transparent); margin:8px 0}
-.panel--profile{display:flex; align-items:center; gap:14px}
-
-.row{
-  display:grid;
-  grid-template-columns: 150px 1fr;
-  gap:12px; align-items:center;
-  background:rgba(0,0,0,.05);
-  border-radius:10px; padding:12px;
-}
-.row__label{font-weight:700}
-.row__control{display:flex; align-items:center}
-.select{
-  width:100%; color:var(--text); background:#1a1f27;
-  border:1px solid var(--line); border-radius:10px;
-  padding:10px 12px; outline:none;
-}
-
-/* EMPTY STATE */
-.empty{margin:40px auto 10px; text-align:center; max-width:520px}
-.empty__title{margin:0 0 6px; font-size:20px}
-.empty__desc{margin:0 0 12px; color:var(--muted)}
-
-/* TEMPLATES GRID */
-.grid{display:grid; gap:16px}
-.grid--two{grid-template-columns: repeat(2, 1fr); gap:16px}
-@media (max-width: 960px){ .grid--two{grid-template-columns:1fr} }
-
-.tcard{
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:14px;
-  box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.04);
-}
-.tcard__head{display:flex; align-items:center; justify-content:space-between}
-.tcard__title{margin:0; font-size:16px; font-weight:800}
-.tcard__desc{margin:8px 0 10px; color:#cbd5e1; font-size:13px}
-.tcard__rule{height:2px; background:linear-gradient(90deg, var(--glowB), transparent); border-radius:2px; margin:0 0 10px}
-.tcard__subtitle{font-weight:700; font-size:13px; margin:0 0 6px}
-.tlist{margin:0 0 12px 18px; padding:0; color:var(--muted); font-size:13px}
-.tcard__foot{display:flex; gap:8px}
-
-/* PROFILE */
-.profile__name{font-weight:800; font-size:18px}
-.profile__handle{color:#cbd5e1; font-size:14px}
-.avatar--lg{width:64px; height:64px}
-
-.kv{display:grid; grid-template-columns: 180px 1fr; gap:8px; padding:6px 0}
-.kv__label{color:#cbd5e1}
-
-/* EDIT PROFILE FORM */
-.form{display:block}
-.field{display:flex; flex-direction:column; gap:6px}
-.field--full{grid-column:1/-1}
-.label{font-size:13px; color:#cbd5e1}
-.input, .textarea{
-  width:100%; color:var(--text); background:#1a1f27;
-  border:1px solid var(--line); border-radius:10px;
-  padding:10px 12px; outline:none;
-}
-.textarea{min-height:110px; resize:vertical}
-.hint{color:#93a3b8; font-size:12px; margin-top:4px}
-.grid--2col{display:grid; grid-template-columns: repeat(2,1fr); gap:12px}
-.grid--3col{display:grid; grid-template-columns: repeat(3,1fr); gap:12px}
-@media (max-width: 960px){ .grid--2col, .grid--3col{grid-template-columns:1fr} }
-.check{display:flex; gap:8px; align-items:center; margin:6px 0}
-.form__actions{display:flex; gap:10px; justify-content:flex-end; padding:10px 0}
-
-/* FOOTER */
-.footer{border-top:1px solid var(--line); margin-top:10px}
-.footer__wrap{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 0; color:#cbd5e1; font-size:13px}
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__wrap">© <span id="year"></span> AI Resume Generator</div>
+  </footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>
