@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Resume Generator — Profile</title>
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="container nav__wrap">
+      <div class="brand"><div class="brand__mark"></div><span class="brand__name">AI Resume Generator</span></div>
+      <nav class="nav__links">
+        <a class="nav__link" href="index.html">Generate Resume</a>
+        <a class="nav__link" href="resumes.html">My Resumes</a>
+        <a class="nav__link" href="templates.html">Templates</a>
+        <a class="nav__link nav__link--active" href="profile.html">Profile</a>
+      </nav>
+      <div class="nav__user"><span class="nav__userName">Shaswot</span><div class="avatar"></div></div>
+    </div>
+  </header>
+
+  <!-- PAGE -->
+  <main class="page">
+    <div class="container">
+      <h1 class="page__title">User Profile</h1>
+
+      <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
+        <a href="edit-profile.html" class="btn btn--primary btn--tiny">Edit Profile</a>
+      </div>
+
+      <div class="panel panel--profile">
+        <div class="avatar avatar--lg"></div>
+        <div>
+          <div class="profile__name">Shaswot Dhakal</div>
+          <div class="profile__handle">@hailcat</div>
+        </div>
+      </div>
+
+      <div class="grid grid--two">
+        <div class="panel">
+          <div class="panel__head">Contact Information</div>
+          <div class="panel__rule"></div>
+          <div class="kv"><div class="kv__label">Email:</div><div class="kv__value">shaswotdhakal@gmail.com</div></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel__head">Social Links</div>
+          <div class="panel__rule"></div>
+          <div class="kv"><div class="kv__label">—</div><div class="kv__value">Add your links in Edit Profile</div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel__head">Account Information</div>
+        <div class="panel__rule"></div>
+        <div class="kv"><div class="kv__label">Member since:</div><div class="kv__value">10/14/2025</div></div>
+        <div class="kv"><div class="kv__label">Last updated:</div><div class="kv__value">10/15/2025</div></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__wrap">© <span id="year"></span> AI Resume Generator</div>
+  </footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>
