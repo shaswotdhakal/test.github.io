@@ -5,14 +5,13 @@
   --bg:#0b0c10;
   --surface:#0f141b;
   --text:#eaf0ff;
-  --muted:#9aa4b2;
+  --muted:#a6adbb;
 
-  --glowA:#7c6cff;   /* violet */
-  --glowB:#00d1ff;   /* cyan   */
-  --glowC:#ff7ab6;   /* pink   */
+  --glowA:#7c6cff;  /* violet */
+  --glowB:#00d1ff;  /* cyan   */
+  --glowC:#ff7ab6;  /* pink   */
 
-  --line: rgba(255,255,255,.09);
-  --glass: rgba(255,255,255,.05);
+  --line: rgba(255,255,255,.10);
 }
 
 *{box-sizing:border-box}
@@ -20,11 +19,14 @@ html,body{height:100%}
 body{
   margin:0;
   color:var(--text);
-  background:
-    linear-gradient(180deg,#0b0c10 0%, #0b0c10 55%, #0f141b 100%);
+  background: linear-gradient(180deg,#0b0c10 0%, #0b0c10 55%, #0f141b 100%);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, Noto Sans, sans-serif;
   line-height:1.45;
 }
+
+/* reset link color to theme (no default blue) */
+a{ color:inherit; text-decoration:none }
+a:hover{ text-decoration:underline; text-decoration-color: rgba(255,255,255,.35) }
 
 .container{max-width:1160px; margin:0 auto; padding:0 20px}
 
@@ -34,7 +36,7 @@ body{
 .nav{
   position:sticky; top:0; z-index:50;
   background:rgba(15,20,27,.55);
-  -webkit-backdrop-filter:saturate(150%) blur(12px);
+  -webkit-backdrop-filter:saturate(150%) blur(12px); /* Safari */
   backdrop-filter:saturate(150%) blur(12px);
   border-bottom:1px solid var(--line);
 }
@@ -46,19 +48,19 @@ body{
   box-shadow:0 0 24px rgba(124,108,255,.35), 0 0 0 1px rgba(255,255,255,.08) inset;
 }
 .brand__name{letter-spacing:.2px}
-.nav__links{display:flex; gap:18px; color:var(--muted); font-size:14px}
-.nav__link{text-decoration:none}
+.nav__links{display:flex; gap:22px; color:#cbd5e1; font-size:14px}
+.nav__link{opacity:.9; padding:6px 0; border-bottom:2px solid transparent}
+.nav__link:hover{border-bottom-color: rgba(0,209,255,.45)}
 .nav__user{display:flex; align-items:center; gap:10px}
 .nav__userName{color:#cbd5e1; font-size:14px}
 .avatar{width:28px; height:28px; border-radius:999px; background:linear-gradient(180deg,var(--glowB),var(--glowA))}
 
 /* =========================
-   PAGE HEADER / TITLE BAR
+   PAGE HEADER
    ========================= */
-.pageHead{padding:26px 0 14px; border-bottom:1px solid var(--line)}
+.pageHead{padding:28px 0 8px; border-bottom:1px solid var(--line)}
 .pageHead__wrap{display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap}
-.pageHead__title{margin:0 0 6px; font-size:22px; letter-spacing:.2px}
-.pageHead__subtitle{margin:0; color:var(--muted); font-size:14px}
+.pageHead__title{margin:0; font-size:24px; letter-spacing:.2px}
 
 .actions{display:flex; gap:10px}
 .btn{
@@ -68,123 +70,49 @@ body{
 .btn--primary{
   color:#0a0d12;
   background:linear-gradient(90deg,var(--glowA),var(--glowB));
-  box-shadow:0 10px 30px rgba(124,108,255,.28), 0 0 0 1px rgba(255,255,255,.08) inset;
+  box-shadow:0 10px 30px rgba(124,108,255,.24), 0 0 0 1px rgba(255,255,255,.08) inset;
 }
 .btn--ghost{
   color:var(--text);
   background:rgba(255,255,255,.04);
   box-shadow:inset 0 0 0 1px var(--line);
 }
-.btn--tiny{padding:8px 10px; border-radius:10px; font-size:13px}
 
 /* =========================
-   TOOLBAR (Search + Filters + Sort)
+   TEMPLATES ROW
    ========================= */
-.toolbar{padding:14px 0; border-bottom:1px solid var(--line); background:rgba(255,255,255,.02)}
-.toolbar__wrap{display:grid; grid-template-columns: 1.2fr 1fr auto; gap:14px; align-items:center}
-.input{position:relative}
-.input input{
-  width:100%; color:var(--text); background:rgba(255,255,255,.04); border:1px solid var(--line);
-  padding:10px 34px 10px 12px; border-radius:12px; outline: none;
-}
-.input__icon{position:absolute; right:10px; top:50%; transform:translateY(-50%); color:#cbd5e1}
-.filters{display:flex; gap:8px; flex-wrap:wrap}
-.chip{
-  background:rgba(255,255,255,.04); border:1px solid var(--line); color:var(--text);
-  padding:8px 10px; border-radius:999px; font-size:12px; cursor:pointer;
-}
-.chip--active{background:linear-gradient(90deg,rgba(124,108,255,.22),rgba(0,209,255,.22)); border-color:transparent}
-.select select{
-  color:var(--text); background:rgba(255,255,255,.04); border:1px solid var(--line);
-  padding:10px 12px; border-radius:12px;
-}
-
-/* =========================
-   GRID (Packages / Templates)
-   ========================= */
-.section{padding:24px 0}
-.grid{
-  display:grid; gap:16px;
-  grid-template-columns: repeat(12, 1fr);
-}
-.card{
-  grid-column: span 4;
-  background:rgba(255,255,255,.04);
+.section{padding:20px 0}
+.row{
+  background:rgba(255,255,255,.03);
   border:1px solid var(--line);
-  border-radius:16px; padding:16px;
-  box-shadow:0 10px 40px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.04);
-  display:flex; flex-direction:column; gap:10px;
+  border-radius:12px;
+  padding:14px;
+  display:grid;
+  grid-template-columns: 150px 1fr;
+  gap:12px;
 }
-.card__head{display:flex; align-items:center; justify-content:space-between}
-.badge{
-  font-size:11px; font-weight:800; padding:6px 8px; border-radius:8px;
-  background:linear-gradient(90deg,rgba(124,108,255,.22),rgba(0,209,255,.22)); color:#0b0c10;
-}
-.iconBtn{background:transparent; border:0; cursor:pointer}
-.kebab{display:inline-block; width:16px; height:2px; background:#cbd5e1; position:relative}
-.kebab::before,.kebab::after{content:""; position:absolute; width:16px; height:2px; background:#cbd5e1; left:0}
-.kebab::before{top:-6px}.kebab::after{top:6px}
+.row__label{font-weight:700}
+.row__control{display:flex; align-items:center}
 
-.card__title{margin:2px 0; font-size:16px; letter-spacing:.2px}
-.card__desc{margin:0; color:var(--muted); font-size:13px}
-.card__meta{display:flex; gap:8px; flex-wrap:wrap}
-.tag{
-  font-size:11px; color:#cbd5e1; padding:6px 8px; border-radius:999px;
-  background:rgba(255,255,255,.03); border:1px solid var(--line);
+.select{
+  width:100%;
+  color:var(--text);
+  background:#1a1f27;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px 12px;
+  outline:none;
 }
-.card__foot{display:flex; gap:8px}
-
-/* Empty state card (hide in React when you have data) */
-.card--empty{
-  grid-column: span 12;
-  justify-content:center; align-items:center; text-align:center;
-  padding:36px; background:rgba(255,255,255,.03);
-}
-.empty h3{margin:0 0 6px}
-.empty p{margin:0 0 12px; color:var(--muted)}
-
-/* =========================
-   RECENT ACTIVITY PANEL
-   ========================= */
-.panel{
-  background:rgba(255,255,255,.03); border:1px solid var(--line); border-radius:16px; padding:14px;
-}
-.panel__head{display:flex; align-items:center; justify-content:space-between; margin-bottom:6px}
-.panel__title{margin:0; font-size:16px}
-.link{color:#cbd5e1; text-decoration:none; font-size:13px}
-.activity{list-style:none; margin:0; padding:0}
-.activity__row{
-  display:grid; grid-template-columns: 18px 1fr auto; align-items:center;
-  gap:10px; padding:10px 6px; border-top:1px solid var(--line);
-}
-.activity__row:first-child{border-top:0}
-.dot{width:10px; height:10px; border-radius:50%}
-.dot--a{background:linear-gradient(90deg,var(--glowA),var(--glowB))}
-.dot--b{background:linear-gradient(90deg,var(--glowB),var(--glowC))}
-.dot--c{background:linear-gradient(90deg,var(--glowC),var(--glowA))}
-.time{color:#cbd5e1; font-size:12px}
 
 /* =========================
    FOOTER
    ========================= */
 .footer{border-top:1px solid var(--line); margin-top:10px}
 .footer__wrap{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 0; color:#cbd5e1; font-size:13px}
-.footer__links{display:flex; gap:14px}
-.footer__links a{color:#cbd5e1; text-decoration:none}
 
 /* =========================
    RESPONSIVE
    ========================= */
-@media (max-width: 1024px){
-  .grid .card{grid-column: span 6}
-  .toolbar__wrap{grid-template-columns: 1fr}
-}
 @media (max-width: 640px){
-  .grid .card{grid-column: span 12}
-  .pageHead__wrap{align-items:flex-start}
-}
-
-/* Reduce motion nicety */
-@media (prefers-reduced-motion: reduce){
-  .nav{-webkit-backdrop-filter:none; backdrop-filter:none}
+  .row{ grid-template-columns: 1fr }
 }
