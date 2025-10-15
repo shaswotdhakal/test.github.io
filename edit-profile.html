@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Resume Generator — Edit Profile</title>
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="container nav__wrap">
+      <div class="brand"><div class="brand__mark"></div><span class="brand__name">AI Resume Generator</span></div>
+      <nav class="nav__links">
+        <a class="nav__link" href="index.html">Generate Resume</a>
+        <a class="nav__link" href="resumes.html">My Resumes</a>
+        <a class="nav__link" href="templates.html">Templates</a>
+        <a class="nav__link nav__link--active" href="profile.html">Profile</a>
+      </nav>
+      <div class="nav__user"><span class="nav__userName">Shaswot</span><div class="avatar"></div></div>
+    </div>
+  </header>
+
+  <!-- PAGE -->
+  <main class="page">
+    <div class="container">
+      <h1 class="page__title">User Profile</h1>
+
+      <form class="form">
+        <!-- Basic Information -->
+        <div class="panel">
+          <div class="panel__head">Basic Information</div>
+          <div class="panel__rule"></div>
+
+          <div class="grid--2col">
+            <label class="field">
+              <span class="label">First Name *</span>
+              <input type="text" class="input" placeholder="Shaswot" />
+            </label>
+            <label class="field">
+              <span class="label">Last Name *</span>
+              <input type="text" class="input" placeholder="Dhakal" />
+            </label>
+            <label class="field">
+              <span class="label">Username</span>
+              <input type="text" class="input" placeholder="hailcat" />
+            </label>
+            <label class="field">
+              <span class="label">Location</span>
+              <input type="text" class="input" placeholder="e.g., San Francisco, CA" />
+            </label>
+            <label class="field field--full">
+              <span class="label">Bio</span>
+              <textarea class="textarea" placeholder="Tell us about yourself…"></textarea>
+            </label>
+          </div>
+        </div>
+
+        <!-- Professional Information -->
+        <div class="panel">
+          <div class="panel__head">Professional Information</div>
+          <div class="panel__rule"></div>
+
+          <div class="grid--2col">
+            <label class="field">
+              <span class="label">Job Title</span>
+              <input type="text" class="input" placeholder="e.g., Software Engineer" />
+            </label>
+            <label class="field">
+              <span class="label">Company</span>
+              <input type="text" class="input" placeholder="e.g., Tech Corp" />
+            </label>
+            <label class="field field--full">
+              <span class="label">Skills</span>
+              <input type="text" class="input" placeholder="e.g., JavaScript, React, Node (comma-separated)" />
+              <span class="hint">Enter skills separated by commas</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Contact & Social Links -->
+        <div class="panel">
+          <div class="panel__head">Contact & Social Links</div>
+          <div class="panel__rule"></div>
+
+          <div class="grid--3col">
+            <label class="field">
+              <span class="label">Website</span>
+              <input type="url" class="input" placeholder="https://yourwebsite.com" />
+            </label>
+            <label class="field">
+              <span class="label">LinkedIn</span>
+              <input type="url" class="input" placeholder="https://linkedin.com/in/username" />
+            </label>
+            <label class="field">
+              <span class="label">GitHub</span>
+              <input type="url" class="input" placeholder="https://github.com/username" />
+            </label>
+          </div>
+        </div>
+
+        <!-- Preferences -->
+        <div class="panel">
+          <div class="panel__head">Preferences</div>
+          <div class="panel__rule"></div>
+
+          <label class="check"><input type="checkbox" checked /><span>Receive email notifications</span></label>
+          <label class="check"><input type="checkbox" /><span>Receive marketing emails</span></label>
+        </div>
+
+        <div class="form__actions">
+          <button type="submit" class="btn btn--primary">Save Changes</button>
+          <a href="profile.html" class="btn btn--ghost">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__wrap">© <span id="year"></span> AI Resume Generator</div>
+  </footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>
