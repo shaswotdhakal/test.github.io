@@ -3,272 +3,214 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ResumeGen — AI Resume Builder</title>
+  <title>AI Resume Generator — Dashboard</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- =========================================
-       AMBIENT BACKGROUND BLOBS (decorative)
-       ========================================= -->
-  <div class="blur-orb orb-a"></div>
-  <div class="blur-orb orb-b"></div>
-  <div class="blur-orb orb-c"></div>
-
-  <!-- =========================================
+  <!-- ===============================
        NAVBAR
-       ========================================= -->
+       =============================== -->
   <header class="nav">
-    <div class="container nav-wrap">
+    <div class="container nav__wrap">
       <div class="brand">
-        <div class="brand-mark"></div>
-        <div>ResumeGen</div>
+        <div class="brand__mark"></div>
+        <span class="brand__name">AI Resume Generator</span>
       </div>
-      <nav class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#how">How it works</a>
-        <a href="#tech">Tech</a>
-        <a class="cta" href="#start">Try it free</a>
+
+      <nav class="nav__links">
+        <a href="#generate" class="nav__link">Generate Resume</a>
+        <a href="#resumes" class="nav__link">My Resumes</a>
+        <a href="#templates" class="nav__link">Templates</a>
+        <a href="#profile" class="nav__link">Profile</a>
       </nav>
+
+      <div class="nav__user">
+        <span class="nav__userName">Shaswot</span>
+        <div class="avatar" aria-hidden="true"></div>
+      </div>
     </div>
   </header>
 
-  <!-- =========================================
-       HERO
-       ========================================= -->
-  <section class="hero">
-    <div class="container hero-grid">
+  <!-- ===============================
+       PAGE HEADER / TITLE BAR
+       =============================== -->
+  <section class="pageHead">
+    <div class="container pageHead__wrap">
       <div>
-        <span class="eyebrow"><span class="spark"></span> AI-Tailored • ATS-Ready • Recruiter-Approved</span>
-        <h1>Stand-out resumes generated in seconds, not hours.</h1>
-        <p class="lead">
-          Paste a job description, press generate, and get a role-specific resume with measurable impact statements.
-          Edit inline, swap templates, export to PDF.
-        </p>
-        <div class="hero-actions">
-          <a class="cta" href="#start">Generate my resume</a>
-          <a class="ghost" href="#features">Explore features</a>
-        </div>
+        <h1 class="pageHead__title">Your Application Packages</h1>
+        <p class="pageHead__subtitle">Create role-specific bundles, manage templates, and export in one place.</p>
       </div>
 
-      <!-- =========================================
-           DEMO RESUME IMAGE (Glass mockup)
-           ========================================= -->
-      <div class="mock">
-        <div class="bar">
-          <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div>
-          <div style="margin-left:8px; color:#cbd5e1; font-size:12px;">Resume — Product Manager</div>
-        </div>
-        <div class="paper">
-          <div class="resume">
-            <aside>
-              <div class="pill">SUMMARY</div>
-              <p style="margin:10px 0 18px;">PM with 5+ yrs building AI products. Shipped features to 2M users; reduced onboarding time by 28%.</p>
-
-              <div class="pill">SKILLS</div>
-              <ul style="margin:10px 0 18px 18px; padding:0;">
-                <li>Roadmapping, A/B testing</li>
-                <li>Prompt design, RAG</li>
-                <li>SQL, GA4, Mixpanel</li>
-              </ul>
-
-              <div class="pill">MATCH SCORE</div>
-              <div class="meter" style="margin-top:8px;"><span style="width:82%"></span></div>
-            </aside>
-
-            <main>
-              <div style="font-weight:800; font-size:18px; letter-spacing:.2px">ALEX TAYLOR</div>
-              <div style="color:#64748b; font-size:12px">alex@email · linkedin.com/in/alex · Toronto</div>
-
-              <h4 style="margin:14px 0 6px; font-size:12px; color:#0f172a; letter-spacing:.11em;">EXPERIENCE</h4>
-              <ul style="margin:0 0 14px 16px; padding:0;">
-                <li>Led launch of AI resume assistant → +37% conversion; NPS +22.</li>
-                <li>Cut job-match time 65% with semantic search + reranker.</li>
-              </ul>
-
-              <h4 style="margin:0 0 6px; font-size:12px; color:#0f172a; letter-spacing:.11em;">EDUCATION</h4>
-              <p style="margin:0 0 8px;">BSc, Computer Science — UWaterloo</p>
-
-              <div class="pill" style="background:#eafff3; color:#065f46; margin-top:6px;">AI Suggestions</div>
-              <p style="margin:8px 0 0; color:#0f172a;">“Quantify the adoption impact: <em>‘adopted by 2M+ users in 4 months’</em>.”</p>
-            </main>
-          </div>
-        </div>
+      <!-- Quick actions (easy React hooks) -->
+      <div class="actions">
+        <button class="btn btn--primary">Create New Package</button>
+        <button class="btn btn--ghost">Import Resume</button>
       </div>
     </div>
   </section>
 
-  <!-- =========================================
-       SOCIAL PROOF / LOGO MARQUEE
-       ========================================= -->
-  <section class="logos">
-    <div class="container" style="display:flex; gap:50px; overflow:hidden;">
-      <div class="marquee" aria-hidden="true">
-        <div class="logo">TRUSTED BY CANDIDATES AT</div>
-        <div class="logo">Shoplify</div>
-        <div class="logo">Cloudly</div>
-        <div class="logo">DataForge</div>
-        <div class="logo">MetroBank</div>
-        <div class="logo">Vectra</div>
-        <!-- loop again for seamless scroll -->
-        <div class="logo">TRUSTED BY CANDIDATES AT</div>
-        <div class="logo">Shoplify</div>
-        <div class="logo">Cloudly</div>
-        <div class="logo">DataForge</div>
-        <div class="logo">MetroBank</div>
-        <div class="logo">Vectra</div>
+  <!-- ===============================
+       TOOLBAR (Search + Filters)
+       =============================== -->
+  <section class="toolbar">
+    <div class="container toolbar__wrap">
+      <div class="input input--withIcon">
+        <!-- easy to bind value in React -->
+        <input type="text" placeholder="Search packages, templates…" aria-label="Search" />
+        <svg class="input__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21 21l-4.2-4.2M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4z"
+                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <div class="filters">
+        <button class="chip chip--active">All</button>
+        <button class="chip">Engineering</button>
+        <button class="chip">Product</button>
+        <button class="chip">Data</button>
+        <button class="chip">Design</button>
+      </div>
+
+      <div class="sort">
+        <label class="select">
+          <select aria-label="Sort by">
+            <option>Recently updated</option>
+            <option>Alphabetical</option>
+            <option>Most used</option>
+          </select>
+        </label>
       </div>
     </div>
   </section>
 
-  <!-- =========================================
-       "EVERYTHING YOU NEED" — FEATURES
-       ========================================= -->
-  <section id="features" class="section">
+  <!-- ===============================
+       TEMPLATES / PACKAGES GRID
+       =============================== -->
+  <section id="templates" class="section">
+    <div class="container grid">
+      <!-- Card 1 -->
+      <article class="card">
+        <header class="card__head">
+          <span class="badge">Package</span>
+          <button class="iconBtn" aria-label="More">
+            <span class="kebab"></span>
+          </button>
+        </header>
+        <h3 class="card__title">Classic — Professional</h3>
+        <p class="card__desc">Traditional layout with clean hierarchy. Great for corporate roles.</p>
+
+        <div class="card__meta">
+          <span class="tag">ATS-Safe</span>
+          <span class="tag">PDF Export</span>
+          <span class="tag">1-column</span>
+        </div>
+
+        <footer class="card__foot">
+          <button class="btn btn--tiny">Open</button>
+          <button class="btn btn--tiny btn--ghost">Duplicate</button>
+        </footer>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="card">
+        <header class="card__head">
+          <span class="badge">Package</span>
+          <button class="iconBtn" aria-label="More">
+            <span class="kebab"></span>
+          </button>
+        </header>
+        <h3 class="card__title">Impact — Metric-Forward</h3>
+        <p class="card__desc">Highlights quantified achievements; perfect for growth/PM roles.</p>
+        <div class="card__meta">
+          <span class="tag">Metrics</span>
+          <span class="tag">Keywords</span>
+          <span class="tag">1-2 columns</span>
+        </div>
+        <footer class="card__foot">
+          <button class="btn btn--tiny">Open</button>
+          <button class="btn btn--tiny btn--ghost">Duplicate</button>
+        </footer>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card">
+        <header class="card__head">
+          <span class="badge">Package</span>
+          <button class="iconBtn" aria-label="More">
+            <span class="kebab"></span>
+          </button>
+        </header>
+        <h3 class="card__title">Modern — Compact</h3>
+        <p class="card__desc">Dense, recruiter-friendly scan pattern. Good for junior dev roles.</p>
+        <div class="card__meta">
+          <span class="tag">Compact</span>
+          <span class="tag">Fast Scan</span>
+        </div>
+        <footer class="card__foot">
+          <button class="btn btn--tiny">Open</button>
+          <button class="btn btn--tiny btn--ghost">Duplicate</button>
+        </footer>
+      </article>
+
+      <!-- Empty-state example (toggle via React if no packages) -->
+      <article class="card card--empty">
+        <div class="empty">
+          <h3>No packages yet</h3>
+          <p>Create your first package to keep versions for different roles.</p>
+          <button class="btn btn--primary btn--tiny">Create New Package</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===============================
+       RECENT ACTIVITY (simple list)
+       =============================== -->
+  <section class="section">
     <div class="container">
-      <h2 style="margin:0 0 10px; font-size:28px;">Everything you need to make recruiters say “whoa.”</h2>
-      <p style="margin:0 0 22px; color:var(--muted)">Opinionated defaults, zero fluff. Built for speed and signal.</p>
-
-      <div class="grid">
-        <div class="card" style="grid-column: span 5;">
-          <div class="icon"></div>
-          <h3>Job-Aware Generation</h3>
-          <p>Paste a posting; we align phrasing, keywords, and achievements to it automatically.</p>
-        </div>
-        <div class="card" style="grid-column: span 7;">
-          <div class="icon"></div>
-          <h3>Impact Rewrites (Quantified)</h3>
-          <p>Transforms vague bullets into outcome-driven statements with metrics (saved 18% costs, +37% activation).</p>
+      <div class="panel">
+        <div class="panel__head">
+          <h3 class="panel__title">Recent activity</h3>
+          <a class="link" href="#all">View all</a>
         </div>
 
-        <div class="card" style="grid-column: span 7;">
-          <div class="icon"></div>
-          <h3>Live Editor + Templates</h3>
-          <p>Inline edits, one-click tone shift, and clean templates that don’t break ATS parsers.</p>
-        </div>
-        <div class="card" style="grid-column: span 5;">
-          <div class="icon"></div>
-          <h3>Chrome Assist</h3>
-          <p>Scan LinkedIn/Indeed/Glassdoor pages and generate tailored drafts in-place.</p>
-        </div>
-
-        <div class="card" style="grid-column: span 5;">
-          <div class="icon"></div>
-          <h3>Version Packages</h3>
-          <p>Keep role-specific variants together (PM, Data, DevRel) and switch context instantly.</p>
-        </div>
-        <div class="card" style="grid-column: span 7;">
-          <div class="icon"></div>
-          <h3>Security by Default</h3>
-          <p>Auth wall, encrypted storage, and private inference options for sensitive profiles.</p>
-        </div>
+        <ul class="activity">
+          <li class="activity__row">
+            <span class="dot dot--a"></span>
+            <span><strong>Impact — Metric-Forward</strong> exported as PDF</span>
+            <time class="time">2h ago</time>
+          </li>
+          <li class="activity__row">
+            <span class="dot dot--b"></span>
+            <span>New template <strong>Modern — Compact</strong> created</span>
+            <time class="time">Yesterday</time>
+          </li>
+          <li class="activity__row">
+            <span class="dot dot--c"></span>
+            <span>Keywords updated for <strong>Classic — Professional</strong></span>
+            <time class="time">2d</time>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- =========================================
-       HOW IT WORKS (ZIG-ZAG STEPS)
-       ========================================= -->
-  <section id="how" class="section" style="padding-top:0;">
-    <div class="container">
-      <h2 style="margin:0 0 10px; font-size:28px;">How it works (no mystery)</h2>
-      <p style="margin:0 0 22px; color:var(--muted)">From JD → tailored resume in ~60 seconds.</p>
-
-      <div class="steps">
-        <div class="step">
-          <div class="badge">1</div>
-          <div>
-            <strong>Drop a job description (or URL).</strong>
-            <p>We parse signals, seniority, and must-haves behind the scenes.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="badge">2</div>
-          <div>
-            <strong>Import your resume or profile.</strong>
-            <p>We map skills to the posting and flag gaps with suggestions.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="badge">3</div>
-          <div>
-            <strong>Generate & fine-tune.</strong>
-            <p>Tweak tone, quantify impact, and pick a template that fits.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="badge">4</div>
-          <div>
-            <strong>Export & apply.</strong>
-            <p>PDFs that stay pretty and parse clean in ATS.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================
-       TECH STACK
-       ========================================= -->
-  <section id="tech" class="section" style="padding-top:10px;">
-    <div class="container">
-      <h2 style="margin:0 0 10px; font-size:26px;">Under the hood</h2>
-      <div class="grid">
-        <div class="card" style="grid-column: span 6;">
-          <h3>Frontend</h3>
-          <p>React app with real-time editor and semantic highlight of JD matches.</p>
-        </div>
-        <div class="card" style="grid-column: span 6;">
-          <h3>Backend</h3>
-          <p>Node/Express API orchestration with caching for fast iterations.</p>
-        </div>
-        <div class="card" style="grid-column: span 6;">
-          <h3>Auth & Security</h3>
-          <p>Clerk authentication, encrypted storage, optional redaction pipeline.</p>
-        </div>
-        <div class="card" style="grid-column: span 6;">
-          <h3>AI Engine</h3>
-          <p>OpenAI-powered generation with prompt tooling to enforce measurables.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================
-       FINAL CTA
-       ========================================= -->
-  <section class="section" id="start" style="padding-top:20px;">
-    <div class="container">
-      <div class="cta-rail">
-        <div>
-          <div style="opacity:.9; font-weight:800; font-size:22px; letter-spacing:.2px;">
-            Ready to generate your next interview-winning resume?
-          </div>
-          <div style="color:#0a0d12; background:#ffffff; display:inline-block; padding:4px 8px; border-radius:8px; margin-top:8px; font-weight:700;">
-            Avg. match boost: <span style="background: linear-gradient(90deg,var(--glowA),var(--glowB)); -webkit-background-clip:text; color:transparent;">+27%</span>
-          </div>
-        </div>
-        <a href="#!" class="">Start free</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================
+  <!-- ===============================
        FOOTER
-       ========================================= -->
-  <footer style="border-top:1px solid rgba(255,255,255,.06);">
-    <div class="container" style="padding:24px 0; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; color:var(--muted); font-size:13px;">
-      <div>© <span id="year"></span> ResumeGen.</div>
-      <div style="display:flex; gap:16px;">
-        <a href="#features">Features</a>
-        <a href="#how">How it works</a>
-        <a href="#tech">Tech</a>
-      </div>
+       =============================== -->
+  <footer class="footer">
+    <div class="container footer__wrap">
+      <span>© <span id="year"></span> AI Resume Generator</span>
+      <nav class="footer__links">
+        <a href="#privacy">Privacy</a>
+        <a href="#terms">Terms</a>
+        <a href="#support">Support</a>
+      </nav>
     </div>
   </footer>
 
   <script>
-    // simple year setter
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
