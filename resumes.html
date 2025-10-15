@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Resume Generator — My Resumes</title>
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="container nav__wrap">
+      <div class="brand"><div class="brand__mark"></div><span class="brand__name">AI Resume Generator</span></div>
+      <nav class="nav__links">
+        <a class="nav__link" href="home.html">Generate Resume</a>
+        <a class="nav__link nav__link--active" href="resumes.html">My Resumes</a>
+        <a class="nav__link" href="templates.html">Templates</a>
+        <a class="nav__link" href="profile.html">Profile</a>
+      </nav>
+      <div class="nav__user"><span class="nav__userName">Shaswot</span><div class="avatar"></div></div>
+    </div>
+  </header>
+
+  <!-- PAGE -->
+  <main class="page">
+    <div class="container">
+      <h1 class="page__title">My Resumes</h1>
+
+      <div class="panel panel--row">
+        <div class="row">
+          <div class="row__label">Templates:</div>
+          <div class="row__control">
+            <select class="select">
+              <option>Classic - Traditional professional resume layout</option>
+              <option>Professional - Clean, professional layout suitable for all industries</option>
+              <option>Modern - Clean contemporary layout with subtle design elements</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="empty">
+        <h3 class="empty__title">No Resumes Yet</h3>
+        <p class="empty__desc">You haven’t generated any resumes yet. Go to the home page to create your first resume!</p>
+        <a href="home.html" class="btn btn--primary">Generate Resume</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__wrap">© <span id="year"></span> AI Resume Generator</div>
+  </footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>
