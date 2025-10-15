@@ -4,12 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AI Resume Generator — Dashboard</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="test.css" />
 </head>
 <body>
 
   <!-- ===============================
-       NAVBAR
+       NAVBAR (same items, themed links)
        =============================== -->
   <header class="nav">
     <div class="container nav__wrap">
@@ -19,10 +19,10 @@
       </div>
 
       <nav class="nav__links">
-        <a href="#generate" class="nav__link">Generate Resume</a>
-        <a href="#resumes" class="nav__link">My Resumes</a>
-        <a href="#templates" class="nav__link">Templates</a>
-        <a href="#profile" class="nav__link">Profile</a>
+        <a class="nav__link" href="#generate">Generate Resume</a>
+        <a class="nav__link" href="#resumes">My Resumes</a>
+        <a class="nav__link" href="#templates">Templates</a>
+        <a class="nav__link" href="#profile">Profile</a>
       </nav>
 
       <div class="nav__user">
@@ -33,16 +33,11 @@
   </header>
 
   <!-- ===============================
-       PAGE HEADER / TITLE BAR
+       PAGE HEADER (title + actions)
        =============================== -->
   <section class="pageHead">
     <div class="container pageHead__wrap">
-      <div>
-        <h1 class="pageHead__title">Your Application Packages</h1>
-        <p class="pageHead__subtitle">Create role-specific bundles, manage templates, and export in one place.</p>
-      </div>
-
-      <!-- Quick actions (easy React hooks) -->
+      <h1 class="pageHead__title">Your Application Packages</h1>
       <div class="actions">
         <button class="btn btn--primary">Create New Package</button>
         <button class="btn btn--ghost">Import Resume</button>
@@ -51,147 +46,19 @@
   </section>
 
   <!-- ===============================
-       TOOLBAR (Search + Filters)
-       =============================== -->
-  <section class="toolbar">
-    <div class="container toolbar__wrap">
-      <div class="input input--withIcon">
-        <!-- easy to bind value in React -->
-        <input type="text" placeholder="Search packages, templates…" aria-label="Search" />
-        <svg class="input__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M21 21l-4.2-4.2M10.8 18a7.2 7.2 0 1 1 0-14.4 7.2 7.2 0 0 1 0 14.4z"
-                stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
-        </svg>
-      </div>
-
-      <div class="filters">
-        <button class="chip chip--active">All</button>
-        <button class="chip">Engineering</button>
-        <button class="chip">Product</button>
-        <button class="chip">Data</button>
-        <button class="chip">Design</button>
-      </div>
-
-      <div class="sort">
-        <label class="select">
-          <select aria-label="Sort by">
-            <option>Recently updated</option>
-            <option>Alphabetical</option>
-            <option>Most used</option>
-          </select>
-        </label>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===============================
-       TEMPLATES / PACKAGES GRID
+       TEMPLATES ROW (label + select)
        =============================== -->
   <section id="templates" class="section">
-    <div class="container grid">
-      <!-- Card 1 -->
-      <article class="card">
-        <header class="card__head">
-          <span class="badge">Package</span>
-          <button class="iconBtn" aria-label="More">
-            <span class="kebab"></span>
-          </button>
-        </header>
-        <h3 class="card__title">Classic — Professional</h3>
-        <p class="card__desc">Traditional layout with clean hierarchy. Great for corporate roles.</p>
-
-        <div class="card__meta">
-          <span class="tag">ATS-Safe</span>
-          <span class="tag">PDF Export</span>
-          <span class="tag">1-column</span>
-        </div>
-
-        <footer class="card__foot">
-          <button class="btn btn--tiny">Open</button>
-          <button class="btn btn--tiny btn--ghost">Duplicate</button>
-        </footer>
-      </article>
-
-      <!-- Card 2 -->
-      <article class="card">
-        <header class="card__head">
-          <span class="badge">Package</span>
-          <button class="iconBtn" aria-label="More">
-            <span class="kebab"></span>
-          </button>
-        </header>
-        <h3 class="card__title">Impact — Metric-Forward</h3>
-        <p class="card__desc">Highlights quantified achievements; perfect for growth/PM roles.</p>
-        <div class="card__meta">
-          <span class="tag">Metrics</span>
-          <span class="tag">Keywords</span>
-          <span class="tag">1-2 columns</span>
-        </div>
-        <footer class="card__foot">
-          <button class="btn btn--tiny">Open</button>
-          <button class="btn btn--tiny btn--ghost">Duplicate</button>
-        </footer>
-      </article>
-
-      <!-- Card 3 -->
-      <article class="card">
-        <header class="card__head">
-          <span class="badge">Package</span>
-          <button class="iconBtn" aria-label="More">
-            <span class="kebab"></span>
-          </button>
-        </header>
-        <h3 class="card__title">Modern — Compact</h3>
-        <p class="card__desc">Dense, recruiter-friendly scan pattern. Good for junior dev roles.</p>
-        <div class="card__meta">
-          <span class="tag">Compact</span>
-          <span class="tag">Fast Scan</span>
-        </div>
-        <footer class="card__foot">
-          <button class="btn btn--tiny">Open</button>
-          <button class="btn btn--tiny btn--ghost">Duplicate</button>
-        </footer>
-      </article>
-
-      <!-- Empty-state example (toggle via React if no packages) -->
-      <article class="card card--empty">
-        <div class="empty">
-          <h3>No packages yet</h3>
-          <p>Create your first package to keep versions for different roles.</p>
-          <button class="btn btn--primary btn--tiny">Create New Package</button>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- ===============================
-       RECENT ACTIVITY (simple list)
-       =============================== -->
-  <section class="section">
     <div class="container">
-      <div class="panel">
-        <div class="panel__head">
-          <h3 class="panel__title">Recent activity</h3>
-          <a class="link" href="#all">View all</a>
+      <div class="row">
+        <label class="row__label" for="template-select">Templates:</label>
+        <div class="row__control">
+          <select id="template-select" class="select">
+            <option>Classic - Traditional professional resume layout</option>
+            <option>Professional - Clean, professional layout suitable for all industries</option>
+            <option>Modern - Clean contemporary layout with subtle design elements</option>
+          </select>
         </div>
-
-        <ul class="activity">
-          <li class="activity__row">
-            <span class="dot dot--a"></span>
-            <span><strong>Impact — Metric-Forward</strong> exported as PDF</span>
-            <time class="time">2h ago</time>
-          </li>
-          <li class="activity__row">
-            <span class="dot dot--b"></span>
-            <span>New template <strong>Modern — Compact</strong> created</span>
-            <time class="time">Yesterday</time>
-          </li>
-          <li class="activity__row">
-            <span class="dot dot--c"></span>
-            <span>Keywords updated for <strong>Classic — Professional</strong></span>
-            <time class="time">2d</time>
-          </li>
-        </ul>
       </div>
     </div>
   </section>
@@ -202,11 +69,6 @@
   <footer class="footer">
     <div class="container footer__wrap">
       <span>© <span id="year"></span> AI Resume Generator</span>
-      <nav class="footer__links">
-        <a href="#privacy">Privacy</a>
-        <a href="#terms">Terms</a>
-        <a href="#support">Support</a>
-      </nav>
     </div>
   </footer>
 
